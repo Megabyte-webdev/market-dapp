@@ -25,7 +25,7 @@ export const notify = ({ type, title, message }) => {
   }
 
   const notificationComponent = (
-    <div className={`flex items-center gap-[10px] z-[999] ${textColor}`}>
+    <div className={`flex items-center gap-[10px] z-[999] ${textColor} text-left`}>
       {icon}
       <div className="flex flex-col">
         <strong className="text-sm capitalize">{title}</strong>
