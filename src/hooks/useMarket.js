@@ -6,7 +6,7 @@ import { ethers } from "ethers";
 const useMarket = () => {
     const { account, contract } = useAuth();
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
 
