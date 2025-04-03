@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { notify } from "../utils/notifications/Notification"; // Assuming this is the correct path
 import useMarket from "../hooks/useMarket";
 import { FaSpinner } from "react-icons/fa"; // Import FaSpinner from react-icons
 
 const AddProductForm = () => {
-    const { addProduct, loading, error:isFetchError } = useMarket();
+    const { addProduct, loading, addProductLoading } = useMarket();
     
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [error, setError] = useState("");
+
+    const reset=()=>{
+        setName("");
+        setPrice("");
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,11 +30,9 @@ const AddProductForm = () => {
         setError("");
 
         // Call addProduct with the entered name and price
-        await addProduct(name, parseFloat(price));
-        if(isFetchError == null){
-        setName("");
-        setPrice("");
-        }
+        await addProduct(name, parseFloat(price), ()=>{reset()});
+        
+    
     };
 
     return (
@@ -67,10 +69,10 @@ const AddProductForm = () => {
 
                 <button
                     type="submit"
-                    disabled={loading} // Disable button when loading
-                    className="w-full px-6 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition duration-300 disabled:cursor-not-allowe"
+                    disabled={loading || addProductLoading} // Disable button when loading
+                    className="w-full px-6 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition duration-300 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                    {loading ? (
+                    {addProductLoading ? (
                         <div className="flex items-center justify-center">
                             <FaSpinner className="animate-spin h-5 w-5 mr-3 text-white" />
                             Adding Product...

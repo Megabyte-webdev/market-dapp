@@ -40,13 +40,13 @@ export const AuthProvider = ({ children }) => {
                 return;
             }
 
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            await provider.send('eth_requestAccounts', []);
+            const newProvider = new ethers.providers.Web3Provider(window.ethereum);
+            await newProvider.send('eth_requestAccounts', []);
 
-            const signer = provider.getSigner();
+            const signer = newProvider.getSigner();
             const accountAddress = await signer.getAddress();
 
-            setProvider(provider);
+            setProvider(newProvider);
             setAccount(accountAddress);
 
             const contractInstance = new ethers.Contract(
@@ -55,8 +55,9 @@ export const AuthProvider = ({ children }) => {
                 signer
             );
             setContract(contractInstance);
-            console.log(contractInstance)
-            await fetchENSName(accountAddress, provider); // ✅ Fetch ENS Name
+            console.log("Contract Instance:", contractInstance);
+
+            await fetchENSName(accountAddress, newProvider); // ✅ Fetch ENS Name
 
             if (showNotification) {
                 notify({
@@ -90,7 +91,7 @@ export const AuthProvider = ({ children }) => {
         });
     };
 
-    // Effect to handle wallet disconnection & reconnection
+    // Detect Provider Changes (Accounts, Chain, or Full Provider Change)
     useEffect(() => {
         if (!window.ethereum) return;
 
@@ -102,15 +103,50 @@ export const AuthProvider = ({ children }) => {
             }
         };
 
+        const handleChainChanged = () => {
+            connectWallet();
+        };
+
+        const handleProviderChanged = () => {
+            console.log("Provider changed, reconnecting...");
+            connectWallet();
+        };
+
         window.ethereum.on('accountsChanged', handleAccountsChanged);
+        window.ethereum.on('chainChanged', handleChainChanged);
         window.ethereum.on('disconnect', disconnectWallet);
+
+        // Detect provider change if the wallet supports it
+        if (window.ethereum._handleProviderChanged) {
+            window.ethereum._handleProviderChanged(handleProviderChanged);
+        }
 
         connectWallet(false); // ✅ Auto-connect without notification
 
         return () => {
             window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+            window.ethereum.removeListener('chainChanged', handleChainChanged);
             window.ethereum.removeListener('disconnect', disconnectWallet);
+
+            if (window.ethereum._handleProviderChanged) {
+                window.ethereum._handleProviderChanged(null);
+            }
         };
+    }, []);
+
+    // Fallback: Poll for Provider Change (Useful for WalletConnect & Other Wallets)
+    useEffect(() => {
+        let prevProvider = window.ethereum;
+
+        const checkProviderChange = setInterval(() => {
+            if (window.ethereum !== prevProvider) {
+                console.log("Detected provider change, reconnecting...");
+                prevProvider = window.ethereum;
+                connectWallet();
+            }
+        }, 3000); // Check every 3 seconds
+
+        return () => clearInterval(checkProviderChange);
     }, []);
 
     return (

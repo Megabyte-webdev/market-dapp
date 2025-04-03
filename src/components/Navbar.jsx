@@ -6,7 +6,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import Btn from "./Btn";
 
 const Navbar = () => {
-  const { user, connectWallet } = useAuth();
+  const { user, connectWallet, isLoading } = useAuth();
 
   const [menu, setMenu] = useState(false);
   const location = useLocation(); // Get current route location
@@ -69,7 +69,7 @@ const Navbar = () => {
 
         : <div className="hidden md:flex items-center justify-center gap-3 lg:order-2 ml-auto">
           <Btn
-            title="Connect"
+            title={isLoading ? "Connecting...": "Connect"}
             loc={connectWallet}
             styl="bg-transparent border-2 border-primary text-primary"
           />
