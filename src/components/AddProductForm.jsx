@@ -27,7 +27,7 @@ const AddProductForm = () => {
 
         // Call addProduct with the entered name and price
         await addProduct(name, parseFloat(price));
-        if(!isFetchError){
+        if(isFetchError == null){
         setName("");
         setPrice("");
         }
@@ -56,7 +56,7 @@ const AddProductForm = () => {
                         <label htmlFor="price" className="text-sm text-gray-700">Price (ETH)</label>
                         <input
                             id="price"
-                            type="text"
+                            type="number"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             className="w-full p-3 mt-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600"
