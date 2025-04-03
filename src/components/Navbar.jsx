@@ -27,7 +27,7 @@ const Navbar = () => {
       <div
         className={`${!menu
           ? "hidden"
-          : "absolute top-12 left-0 right-0 bg-white flex flex-col px-4"
+          : "absolute top-10 left-0 right-0 bg-white flex flex-col px-4"
           } lg:flex lg:flex-row lg:static lg:bg-transparent lg:items-center lg:gap-4 my-3 mx-auto gap-2 font-bold text-sm order-1 w-full lg:w-max lg:order-0 *:p-2 *:cursor-pointer hover:*:hover:text-slate-600`}
       >
         <NavLink to="/" className="[&.active]:text-slate-600 text-slate-500">
