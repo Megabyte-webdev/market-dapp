@@ -8,7 +8,7 @@ export default {
         'responsive2': "repeat(auto-fill, minmax(250px, 1fr))",
         'responsive-sm': "repeat(auto-fill, minmax(200px, 1fr))"
       },
-      maxWidth:{
+      width:{
         peak: "1400px",
       }
     },
