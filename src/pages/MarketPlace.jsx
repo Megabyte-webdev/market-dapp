@@ -38,8 +38,10 @@ const MarketPlace = () => {
             {/* Marketplace Section */}
             <main className="container mx-auto px-6 py-10">
                 <AddProductForm />
-                <h3 className="text-2xl font-semibold mb-6 text-center">Your Products</h3>
+                <h3 className="text-2xl font-semibold my-6 text-center">Your Products</h3>
+                <p className="text-sm text-gray-400">You currently have no products. Start adding some!</p>
 
+                <h3 className="text-2xl font-semibold my-6 text-center">Our Latest Products</h3>
                 {loading ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[...Array(6)].map((_, index) => (
@@ -76,8 +78,6 @@ const MarketPlace = () => {
                     </div>
 
                 )}
-
-                <h3 className="text-2xl font-semibold my-6 text-center">Our Latest Products</h3>
 
             </main>
         </div>
