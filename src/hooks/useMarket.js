@@ -20,12 +20,14 @@ const useMarket = () => {
             // Call the contract's method to fetch products
             const itemCount = await contract.itemCount(); // Replace with your contract's method
             let items=[];
-            for (let i = 0; i <= itemCount; i++) {
+            if (!isNaN(itemCount)){
+              for (let i = 0; i <= itemCount; i++) {
                 const item = await contract.items(i);
                 items.push(item)
             }
             setProducts(items)
             console.log(items)
+            }
         } catch (err) {
             console.error("Error fetching products:", err);
             setError("Failed to fetch products.");
