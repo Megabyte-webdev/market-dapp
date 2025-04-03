@@ -4,7 +4,7 @@ import useMarket from "../hooks/useMarket";
 import { FaSpinner } from "react-icons/fa"; // Import FaSpinner from react-icons
 
 const AddProductForm = () => {
-    const { addProduct, loading } = useMarket();
+    const { addProduct, loading, error:isFetchError } = useMarket();
     
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
@@ -26,10 +26,11 @@ const AddProductForm = () => {
         setError("");
 
         // Call addProduct with the entered name and price
-        addProduct(name, parseFloat(price));
-        
+        await addProduct(name, parseFloat(price));
+        if(!isFetchError){
         setName("");
         setPrice("");
+        }
     };
 
     return (
