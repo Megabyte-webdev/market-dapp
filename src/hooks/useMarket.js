@@ -11,7 +11,7 @@ const useMarket = () => {
 
 
     const fetchProducts = async () => {
-        if (!contract) return;
+        if (!contract && !account) return;
 
         setLoading(true);
         setError(null);
@@ -37,7 +37,7 @@ const useMarket = () => {
     };
 
     const addProduct = async (name, price) => {
-        if (!contract) return;
+        if (!contract && !account) return;
 
         setLoading(true);
         setError(null);
