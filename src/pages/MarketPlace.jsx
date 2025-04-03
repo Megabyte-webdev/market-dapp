@@ -9,7 +9,7 @@ const MarketPlace = () => {
     return (
         <div>
             {/* Hero Section */}
-            <section className="bg-gradient-to-r from-gray-600 to-gray-800 text-white w-full min-h-72 flex flex-col items-center justify-center text-center px-6 py-10">
+            <section className="bg-gradient-to-r from-gray-600 to-gray-800 text-white w-full min-h-72 flex flex-col items-center justify-center text-center">
                 <h1 className="font-extrabold text-4xl md:text-5xl">AFO DApp Store</h1>
                 <p className="text-gray-200 text-lg md:text-xl mt-3 max-w-2xl">
                     Explore a decentralized marketplace for blockchain-based applications, digital assets,
