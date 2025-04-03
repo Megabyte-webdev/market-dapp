@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-import './App.css'
 import MarketPlace from './pages/MarketPlace'
 import MainLayout from './layout/MainLayout'
 // import Fallback from './components/Fallback'
