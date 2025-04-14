@@ -35,7 +35,7 @@ const Navbar = () => {
         <img src={logo} alt="Logo" className="w-28 object-contain" />
       </NavLink>
 
-      <div className={`${!menu ? "hidden" : "absolute top-28 left-0 right-0 bg-white flex flex-col p-4"} lg:flex lg:flex-row lg:static lg:bg-transparent lg:items-center lg:gap-4 mx-auto gap-2 font-bold text-sm order-1 w-full lg:w-max lg:order-0`}>
+      <div className={`${!menu ? "hidden" : "absolute top-28 left-0 right-0 bg-white flex flex-col gap-2 p-4"} lg:flex lg:flex-row lg:static lg:bg-transparent lg:items-center lg:gap-4 mx-auto gap-2 font-bold text-sm order-1 w-full lg:w-max lg:order-0`}>
       <NavLink to="#"
           onClick={() => scrollToSection("my-product")}
           className="text-slate-500 hover:text-slate-600"
