@@ -29,7 +29,7 @@ export const notify = ({ type, title, message }) => {
       {icon}
       <div className="flex flex-col">
         <strong className="text-sm capitalize">{title}</strong>
-        <p className="text-[12px] text-gray-500">{message}</p>
+        <p className="text-[12px] text-gray-500">{message?.length > 20 ? `${message.slice(0,20)}...`:message}</p>
       </div>
     </div>
   );

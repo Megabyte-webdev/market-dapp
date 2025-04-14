@@ -4,9 +4,10 @@ import { useAuth } from "../context/AuthContext";
 import ProfileDropdown from "./ProfileDropdown";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Btn from "./Btn";
+import logo from "../assets/logo2.png";
 
 const Navbar = () => {
-  const { user, connectWallet, isLoading } = useAuth();
+  const { account, connectWallet, isLoading } = useAuth();
 
   const [menu, setMenu] = useState(false);
   const location = useLocation(); // Get current route location
@@ -20,8 +21,7 @@ const Navbar = () => {
     <nav
       className="sticky top-0 left-0 right-0 z-20 min-h-14 mx-auto p-3 flex px-sm md:px-md lg:px-lg justify-between items-center flex-wrap md:flex-nowrap transition-all duration-300 bg-white shadow-md">
       <Link to="/" className="flex justify-center items-center mx-2 mr-auto">
-        {/* <img src={logo} alt="logo" className="w-28 md:w-32" /> */}
-        Logo
+        <img src={logo} alt="Logo" className="w-28 object-contain" />
       </Link>
 
       <div
@@ -52,7 +52,7 @@ const Navbar = () => {
           About Us
         </NavLink>
 
-        {!user && <div className="cursor-default flex md:hidden items-center gap-3 lg:order-2">
+        {!account && <div className="cursor-default flex md:hidden items-center gap-3 lg:order-2">
 
           <Btn
             title="Connect"
@@ -62,23 +62,23 @@ const Navbar = () => {
         </div>}
       </div>
 
-      {user ?
+      {account ?
         <div className="lg:order-2 ml-auto hidden md:flex items-center gap-4 text-gray-600">
-          <ProfileDropdown user={user} fullMode={true} />
+          <ProfileDropdown user={account} fullMode={true} />
         </div>
 
         : <div className="hidden md:flex items-center justify-center gap-3 lg:order-2 ml-auto">
           <Btn
-            title={isLoading ? "Connecting...": "Connect"}
+            title={isLoading ? "Connecting..." : "Connect"}
             loc={connectWallet}
             styl="bg-transparent border-2 border-primary text-primary"
           />
         </div>}
 
 
-      {user &&
+      {account &&
         <div className="lg:order-2 ml-auto flex md:hidden items-center gap-4 text-gray-600">
-          <ProfileDropdown user={user} />
+          <ProfileDropdown user={account} />
         </div>
       }
 
