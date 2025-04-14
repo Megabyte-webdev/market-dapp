@@ -44,7 +44,7 @@ const MyProducts = () => {
   };
 
   return (
-    <div className="relative w-full mb-5">
+    <div id="my-product" className="relative w-full mb-5">
       <h3 className="text-2xl font-semibold mb-6 text-center">Products You Own</h3>
 
       {loading?.myProducts ? (
@@ -111,7 +111,7 @@ const MyProducts = () => {
                   />
                   <button
                     onClick={() => handleTransfer(product.id)}
-                    disabled={transferring[product.id]}
+                    disabled={!transferAddresses[product.id] ||transferring[product.id]}
                     className="w-full px-4 py-2 bg-green-600 text-white font-semibold rounded hover:bg-green-700 transition disabled:opacity-60"
                   >
                     {transferring[product.id] ? (
@@ -131,20 +131,20 @@ const MyProducts = () => {
           {/* Navigation Buttons */}
           <div className="flex justify-end gap-4 mt-4">
             <button
-              className={`prev-btn p-2 border border-gray-300 rounded-full transition-all duration-300 ${
+              className={`cursor-pointer prev-btn p-2 border border-gray-300 rounded-full transition-all duration-300 ${
                 isBeginning ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-300 hover:text-black'
               }`}
               disabled={isBeginning}
             >
-              <AiOutlineLeft size={30} />
+              <AiOutlineLeft size={25} />
             </button>
             <button
-              className={`next-btn p-2 border border-gray-300 rounded-full transition-all duration-300 ${
+              className={`cursor-pointer next-btn p-2 border border-gray-300 rounded-full transition-all duration-300 ${
                 isEnd ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-300 hover:text-black'
               }`}
               disabled={isEnd}
             >
-              <AiOutlineRight size={30} />
+              <AiOutlineRight size={25} />
             </button>
           </div>
         </>

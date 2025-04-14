@@ -36,7 +36,7 @@ const AddProductForm = () => {
     };
 
     return (
-        <div className="bg-gray-200 p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
+        <div className="bg-gray-200 p-6 rounded-lg shadow-lg max-w-4xl mx-auto mb-5">
             <h3 className="text-2xl font-semibold mb-6 text-center">Add New Product</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
                 {error && <p className="text-red-500 text-sm">{error}</p>}
