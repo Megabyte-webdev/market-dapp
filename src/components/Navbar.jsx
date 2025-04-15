@@ -65,7 +65,7 @@ const Navbar = () => {
           <div className="cursor-default flex md:hidden items-center gap-3 lg:order-2">
             <Btn
               title="Connect"
-              loc={connectWallet}
+              loc={()=>connectWallet()}
               styl="bg-transparent border-2 border-primary text-primary"
             />
           </div>
