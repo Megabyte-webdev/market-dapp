@@ -16,7 +16,7 @@ const ProfileDropdown = ({ user, fullMode = false }) => {
                 className="flex items-center gap-2 ml-2 font-medium cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)} // Toggle dropdown
             >
-                {fullMode && <p className="text-sm">Hello, {(user?.name?.length > 7 ? `${user?.name?.slice(0,7)}...`: user?.name) || "User"}</p>}
+                {fullMode && <p className="text-sm">Hello, {(user?.length > 7 ? `${user?.slice(0,7)}...`: user) || "User"}</p>}
                 <div className="flex items-center rounded-full bg-gray-200/50 w-max p-1">
                     {/* Show user avatar if available, otherwise show MdAccountCircle icon */}
                     {user?.profile?.profileImage ? (
