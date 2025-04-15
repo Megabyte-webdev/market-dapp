@@ -80,7 +80,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center justify-center gap-3 lg:order-2 ml-auto">
           <Btn
             title={isLoading ? "Connecting..." : "Connect"}
-            loc={connectWallet}
+            loc={()=>connectWallet()}
             styl="bg-transparent border-2 border-primary text-primary"
           />
         </div>
