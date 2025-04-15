@@ -21,6 +21,7 @@ notify({
                 title: "Connection Failed",
                 message: "MetaMask or another Web3 wallet is required. Please install it to use this application."
             });
+setIsLoading(false);
 
 return;
 }
