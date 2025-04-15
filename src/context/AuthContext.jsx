@@ -14,6 +14,16 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const initialize = async () => {
+
+if (!window.ethereum){
+notify({
+                type: "failure",
+                title: "Connection Failed",
+                message: "MetaMask or another Web3 wallet is required. Please install it to use this application."
+            });
+
+return;
+}
         try {
             const newProvider = new ethers.providers.Web3Provider(window.ethereum);
             setProvider(newProvider);
